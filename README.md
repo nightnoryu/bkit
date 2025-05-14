@@ -29,8 +29,9 @@ BrewKit focuses on repeatable builds, host agnostic and build process containeri
 ## Start with BrewKit
 
 Install BrewKit via go >= 1.20 
+
 ```shell
-go install github.com/ispringtech/brewkit
+go install github.com/ispringtech/brewkit/cmd/brewkit@latest
 ```
 
 Create `brewkit.jsonnet`
