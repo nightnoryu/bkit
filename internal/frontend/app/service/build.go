@@ -112,7 +112,11 @@ func (service *buildService) DumpCompiledBuildDefinition(_ context.Context, conf
 func (service *buildService) buildVertex(targets []string, definition builddefinition.Definition) (api.Vertex, error) {
 	if len(targets) == 0 {
 		v, err := service.findTarget(allTargetKeyword, definition)
-		return v, fmt.Errorf("failed to find default target: %w", err)
+		if err != nil {
+			return api.Vertex{}, fmt.Errorf("failed to find default target: %w", err)
+		}
+
+		return v, nil
 	}
 
 	if len(targets) == 1 {
