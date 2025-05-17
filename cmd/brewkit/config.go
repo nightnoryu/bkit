@@ -3,10 +3,10 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"os"
 	"path"
 
-	"github.com/pkg/errors"
 	"github.com/urfave/cli/v2"
 
 	appconfig "github.com/ispringtech/brewkit/internal/frontend/app/config"
@@ -49,12 +49,12 @@ func configInit() *cli.Command {
 
 			err = os.MkdirAll(configDir, 0o755)
 			if err != nil {
-				return errors.Wrapf(err, "failed to create folder for config %s", configDir)
+				return fmt.Errorf("failed to create folder for config %s: %w", configDir, err)
 			}
 
 			err = os.WriteFile(configPath, defaultConfigBuffer.Bytes(), 0o600)
 			if err != nil {
-				return errors.Wrapf(err, "failed to write file for config %s", configDir)
+				return fmt.Errorf("failed to write file for config %s: %w", configDir, err)
 			}
 
 			logger.Outputf("Default config created in %s\n", configPath)

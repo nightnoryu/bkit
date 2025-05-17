@@ -2,11 +2,12 @@ package config
 
 import (
 	"encoding/json"
+	"errors"
+	"fmt"
 	"os"
 	"path"
 
 	"github.com/google/go-jsonnet"
-	"github.com/pkg/errors"
 
 	"github.com/ispringtech/brewkit/internal/common/slices"
 	"github.com/ispringtech/brewkit/internal/frontend/app/config"
@@ -18,10 +19,10 @@ func (p Parser) Config(configPath string) (config.Config, error) {
 	fileBytes, err := os.ReadFile(configPath)
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) {
-			return config.Config{}, errors.WithStack(config.ErrConfigNotFound)
+			return config.Config{}, config.ErrConfigNotFound
 		}
 
-		return config.Config{}, errors.Wrap(err, "failed to read config file")
+		return config.Config{}, fmt.Errorf("failed to read config file: %w", err)
 	}
 
 	vm := jsonnet.MakeVM()
@@ -30,14 +31,14 @@ func (p Parser) Config(configPath string) (config.Config, error) {
 
 	data, err := vm.EvaluateAnonymousSnippet(path.Base(configPath), string(fileBytes))
 	if err != nil {
-		return config.Config{}, errors.Wrap(err, "failed to compile jsonnet for config")
+		return config.Config{}, fmt.Errorf("failed to compile jsonnet for config: %w", err)
 	}
 
 	var c Config
 
 	err = json.Unmarshal([]byte(data), &c)
 	if err != nil {
-		return config.Config{}, errors.Wrap(err, "failed to parse json config")
+		return config.Config{}, fmt.Errorf("failed to parse json config: %w", err)
 	}
 
 	return config.Config{
@@ -61,5 +62,5 @@ func (p Parser) Dump(srcConfig config.Config) ([]byte, error) {
 	}
 
 	data, err := json.Marshal(c)
-	return data, errors.Wrap(err, "failed to marshal config to json")
+	return data, fmt.Errorf("failed to marshal config to json: %w", err)
 }

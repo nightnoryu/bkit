@@ -3,11 +3,10 @@ package executor
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"io"
 	"os"
 	"os/exec"
-
-	"github.com/pkg/errors"
 
 	"github.com/ispringtech/brewkit/internal/common/maybe"
 )
@@ -66,7 +65,7 @@ func (e *executor) Run(ctx context.Context, args Args, params RunParams) (err er
 
 	err = cmd.Start()
 	if err != nil {
-		return errors.Wrapf(err, "failed to run cmd %s", cmd.String())
+		return fmt.Errorf("failed to run cmd %s: %w", cmd.String(), err)
 	}
 
 	commandCtx, cancelFunc := context.WithCancel(context.Background())
@@ -85,9 +84,9 @@ func (e *executor) Run(ctx context.Context, args Args, params RunParams) (err er
 		}
 
 		killErr := cmd.Process.Signal(os.Interrupt)
-		err = errors.WithStack(ctx.Err())
+		err = ctx.Err()
 		if killErr != nil {
-			err = errors.Wrapf(err, killErr.Error())
+			err = fmt.Errorf("%s: %w", killErr.Error(), err)
 		}
 		return err
 	case <-commandCtx.Done():
@@ -103,7 +102,7 @@ func (e *executor) logArgs(args []string) error {
 
 	bytes, err := json.Marshal(args)
 	if err != nil {
-		return errors.Wrap(err, "failed to marshal command args")
+		return fmt.Errorf("failed to marshal command args: %w", err)
 	}
 
 	e.options.logger.Debug(string(bytes) + "\n")

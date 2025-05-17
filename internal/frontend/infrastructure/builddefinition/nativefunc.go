@@ -1,9 +1,10 @@
 package builddefinition
 
 import (
+	"fmt"
+
 	"github.com/google/go-jsonnet"
 	"github.com/google/go-jsonnet/ast"
-	"github.com/pkg/errors"
 )
 
 type nativeFunc interface {
@@ -25,7 +26,7 @@ func (f nativeFunc2[V1, V2]) nativeFunc() *jsonnet.NativeFunction {
 			func(i []interface{}) (interface{}, error) {
 				const argsCount = 2
 				if len(i) != argsCount {
-					return nil, errors.Errorf("not enough arguments to call, expected %d", argsCount)
+					return nil, fmt.Errorf("not enough arguments to call, expected %d", argsCount)
 				}
 
 				v1, err := checkArg[V1](f.v1, i[0])
@@ -64,7 +65,7 @@ func (f nativeFunc3[V1, V2, V3]) nativeFunc() *jsonnet.NativeFunction {
 			func(i []interface{}) (interface{}, error) {
 				const argsCount = 3
 				if len(i) != argsCount {
-					return nil, errors.Errorf("not enough arguments to call, expected %d", argsCount)
+					return nil, fmt.Errorf("not enough arguments to call, expected %d", argsCount)
 				}
 
 				v1, err := checkArg[V1](f.v1, i[0])
@@ -97,7 +98,7 @@ func errWrapper(name string, next func(i []interface{}) (interface{}, error)) fu
 	return func(i []interface{}) (interface{}, error) {
 		json, err := next(i)
 		if err != nil {
-			err = errors.Wrapf(err, "call '%s' failed", name)
+			err = fmt.Errorf("call '%s' failed: %w", name, err)
 		}
 		return json, err
 	}
@@ -112,7 +113,7 @@ func checkArg[V any](arg argDesc, argV interface{}) (v V, err error) {
 	var ok bool
 	v, ok = argV.(V)
 	if !ok {
-		return v, errors.Errorf("expected '%T' got '%T' as %s arg", v, argV, arg.name)
+		return v, fmt.Errorf("expected '%T' got '%T' as %s arg", v, argV, arg.name)
 	}
 	return v, nil
 }

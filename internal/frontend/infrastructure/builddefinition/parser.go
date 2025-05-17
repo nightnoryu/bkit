@@ -2,11 +2,11 @@ package builddefinition
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path"
 
 	"github.com/google/go-jsonnet"
-	"github.com/pkg/errors"
 
 	"github.com/ispringtech/brewkit/internal/common/either"
 	"github.com/ispringtech/brewkit/internal/common/maybe"
@@ -26,7 +26,7 @@ func (parser Parser) Parse(configPath string) (buildconfig.Config, error) {
 
 	err = json.Unmarshal([]byte(data), &c)
 	if err != nil {
-		return buildconfig.Config{}, errors.Wrap(err, "failed to parse json config")
+		return buildconfig.Config{}, fmt.Errorf("failed to parse json config: %w", err)
 	}
 
 	return mapConfig(c), nil
@@ -39,7 +39,7 @@ func (parser Parser) CompileConfig(configPath string) (string, error) {
 func (parser Parser) compileConfig(configPath string) (string, error) {
 	fileBytes, err := os.ReadFile(configPath)
 	if err != nil {
-		return "", errors.Wrap(err, "failed to read build config file")
+		return "", fmt.Errorf("failed to read build config file: %w", err)
 	}
 
 	vm := jsonnet.MakeVM()
@@ -49,7 +49,7 @@ func (parser Parser) compileConfig(configPath string) (string, error) {
 	}
 
 	data, err := vm.EvaluateAnonymousSnippet(path.Base(configPath), string(fileBytes))
-	return data, errors.Wrap(err, "failed to compile jsonnet for build definition")
+	return data, fmt.Errorf("failed to compile jsonnet for build definition: %w", err)
 }
 
 func mapConfig(c Config) buildconfig.Config {

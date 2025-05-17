@@ -3,8 +3,7 @@ package service
 import (
 	"context"
 	"encoding/json"
-
-	"github.com/pkg/errors"
+	"fmt"
 
 	"github.com/ispringtech/brewkit/internal/backend/api"
 	"github.com/ispringtech/brewkit/internal/common/maybe"
@@ -100,7 +99,7 @@ func (service *buildService) DumpBuildDefinition(_ context.Context, configPath s
 
 	d, err := json.Marshal(definition)
 	if err != nil {
-		return "", errors.WithStack(err)
+		return "", err
 	}
 
 	return string(d), nil
@@ -113,7 +112,7 @@ func (service *buildService) DumpCompiledBuildDefinition(_ context.Context, conf
 func (service *buildService) buildVertex(targets []string, definition builddefinition.Definition) (api.Vertex, error) {
 	if len(targets) == 0 {
 		v, err := service.findTarget(allTargetKeyword, definition)
-		return v, errors.Wrap(err, "failed to find default target")
+		return v, fmt.Errorf("failed to find default target: %w", err)
 	}
 
 	if len(targets) == 1 {
@@ -136,7 +135,7 @@ func (service *buildService) buildVertex(targets []string, definition builddefin
 func (service *buildService) findTarget(target string, definition builddefinition.Definition) (api.Vertex, error) {
 	vertex := definition.Vertex(target)
 	if !maybe.Valid(vertex) {
-		return api.Vertex{}, errors.Errorf("target %s not found", target)
+		return api.Vertex{}, fmt.Errorf("target %s not found", target)
 	}
 	return maybe.Just(vertex), nil
 }

@@ -1,9 +1,9 @@
 package main
 
 import (
+	"errors"
 	"os"
 
-	"github.com/pkg/errors"
 	"github.com/urfave/cli/v2"
 
 	"github.com/ispringtech/brewkit/internal/common/infrastructure/logger"

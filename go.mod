@@ -4,7 +4,6 @@ go 1.20
 
 require (
 	github.com/google/go-jsonnet v0.20.0
-	github.com/pkg/errors v0.9.1
 	github.com/urfave/cli/v2 v2.25.1
 	golang.org/x/exp v0.0.0-20230420155640-133eef4313cb
 )

@@ -2,12 +2,12 @@ package docker
 
 import (
 	"bufio"
+	"errors"
+	"fmt"
 	"io"
 	"regexp"
 	"strconv"
 	"strings"
-
-	"github.com/pkg/errors"
 )
 
 const (
@@ -52,7 +52,7 @@ func (p outputParser) parseBuildOutputForRunTarget(output io.Reader) ([]byte, er
 
 		commandOutput, err := scanCommandOutput(scanner)
 		if err != nil {
-			return nil, errors.Wrap(err, "failed to scan command output")
+			return nil, fmt.Errorf("failed to scan command output: %w", err)
 		}
 
 		return []byte(commandOutput), nil
@@ -68,7 +68,7 @@ func scanCommandOutput(scanner *bufio.Scanner) (string, error) {
 
 		submatch := outputLine.FindStringSubmatch(line)
 		if len(submatch) != len(outputLine.SubexpNames()) {
-			return "", errors.Errorf("invalid output line format: %s", line)
+			return "", fmt.Errorf("invalid output line format: %s", line)
 		}
 
 		mark := submatch[1]
@@ -82,24 +82,24 @@ func scanCommandOutput(scanner *bufio.Scanner) (string, error) {
 	}
 
 	output := strings.Join(res, "\n")
-	return "", errors.Errorf("output line is not terminated by %s: current line: %s", doneSymbol, output)
+	return "", fmt.Errorf("output line is not terminated by %s: current line: %s", doneSymbol, output)
 }
 
 func completed(progress string) (bool, error) {
 	const progressSeparator = "/"
 	parts := strings.Split(progress, progressSeparator)
 	if len(parts) != 2 {
-		return false, errors.Errorf("incorrect progress format %s", progress)
+		return false, fmt.Errorf("incorrect progress format %s", progress)
 	}
 
 	readyPart, err := strconv.Atoi(parts[0])
 	if err != nil {
-		return false, errors.Errorf("incorrect progress format %s", progress)
+		return false, fmt.Errorf("incorrect progress format %s", progress)
 	}
 
 	allPart, err := strconv.Atoi(parts[1])
 	if err != nil {
-		return false, errors.Errorf("incorrect progress format %s", progress)
+		return false, fmt.Errorf("incorrect progress format %s", progress)
 	}
 
 	return readyPart == allPart, nil

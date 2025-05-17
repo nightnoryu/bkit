@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/pkg/errors"
-
 	"github.com/ispringtech/brewkit/internal/backend/api"
 	"github.com/ispringtech/brewkit/internal/common/maps"
 	"github.com/ispringtech/brewkit/internal/common/maybe"
@@ -66,7 +64,7 @@ func (generator targetGenerator) stagesForTarget(v api.Vertex) ([]dockerfile.Sta
 
 		s, err = generator.stages(v.Name, stage)
 		if err != nil {
-			return nil, errors.Wrapf(err, "failed to generate instructions for target %s", v.Name)
+			return nil, fmt.Errorf("failed to generate instructions for target %s: %w", v.Name, err)
 		}
 		stages = append(stages, s...)
 	}
@@ -117,7 +115,7 @@ func (generator targetGenerator) stages(name string, stage api.Stage) ([]dockerf
 
 	instructions, err := generator.instructionsForStage(stage)
 	if err != nil {
-		return nil, errors.Wrap(err, "failed to generate instructions for stage")
+		return nil, fmt.Errorf("failed to generate instructions for stage: %w", err)
 	}
 
 	stages := []dockerfile.Stage{

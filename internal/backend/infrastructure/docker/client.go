@@ -9,8 +9,6 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/pkg/errors"
-
 	"github.com/ispringtech/brewkit/internal/backend/app/docker"
 	"github.com/ispringtech/brewkit/internal/common/infrastructure/executor"
 	"github.com/ispringtech/brewkit/internal/common/infrastructure/logger"
@@ -148,7 +146,7 @@ func (c *client) ListImages(ctx context.Context, images []string) ([]docker.Imag
 	output := &bytes.Buffer{}
 	err := c.dockerExecutor.Run(ctx, args, executor.RunParams{Stdout: maybe.NewJust[io.Writer](output)})
 	if err != nil {
-		return nil, errors.Wrapf(err, "failed to list docker images")
+		return nil, fmt.Errorf("failed to list docker images: %w", err)
 	}
 
 	var res []docker.Image

@@ -1,7 +1,8 @@
 package builddefinition
 
 import (
-	"github.com/pkg/errors"
+	"fmt"
+
 	stdslices "golang.org/x/exp/slices"
 
 	"github.com/ispringtech/brewkit/internal/backend/api"
@@ -41,7 +42,7 @@ func (builder *vertexGraphBuilder) graphVertexes() ([]api.Vertex, error) {
 	for vertex := range builder.vertexesSet {
 		v, err := builder.recursiveGraph(vertex)
 		if err != nil {
-			return nil, errors.Wrap(err, "graph solve error")
+			return nil, fmt.Errorf("graph solve error: %w", err)
 		}
 
 		vertexes = append(vertexes, v)
@@ -56,12 +57,12 @@ func (builder *vertexGraphBuilder) recursiveGraph(vertex string) (api.Vertex, er
 	}
 
 	if builder.trace.has(vertex) {
-		return api.Vertex{}, errors.Errorf("recursive graph detected by '%s' target, trace: %s", vertex, builder.trace.String())
+		return api.Vertex{}, fmt.Errorf("recursive graph detected by '%s' target, trace: %s", vertex, builder.trace.String())
 	}
 
 	t, ok := builder.targetsMap[vertex]
 	if !ok {
-		return api.Vertex{}, errors.Errorf("logic error: TargetData for Vertex %s not found", vertex)
+		return api.Vertex{}, fmt.Errorf("logic error: TargetData for Vertex %s not found", vertex)
 	}
 
 	var (
@@ -184,7 +185,7 @@ func (builder *vertexGraphBuilder) walkDependsOn(vertexName string, t buildconfi
 	return slices.MapErr(t.DependsOn, func(dependencyName string) (api.Vertex, error) {
 		exists := builder.vertexesSet.Has(dependencyName)
 		if !exists {
-			return api.Vertex{}, errors.Errorf("%s depends on unknown target %s", vertexName, dependencyName)
+			return api.Vertex{}, fmt.Errorf("%s depends on unknown target %s", vertexName, dependencyName)
 		}
 
 		return builder.recursiveGraph(dependencyName)
@@ -199,7 +200,7 @@ func mapStage(
 ) (api.Stage, error) {
 	mappedSecrets, err := mapSecrets(s.Secrets, secrets)
 	if err != nil {
-		return api.Stage{}, errors.Wrapf(err, "failed to map secrets in %s stage", stageName)
+		return api.Stage{}, fmt.Errorf("failed to map secrets in %s stage: %w", stageName, err)
 	}
 
 	return api.Stage{
@@ -256,7 +257,7 @@ func mapSecret(secret buildconfig.Secret, secrets []config.Secret) (api.Secret, 
 		return s.ID == secret.ID
 	})
 	if !found {
-		return api.Secret{}, errors.Errorf("reference to unknown secret %s", secret.ID)
+		return api.Secret{}, fmt.Errorf("reference to unknown secret %s", secret.ID)
 	}
 	return api.Secret{
 		ID:        secret.ID,

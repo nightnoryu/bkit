@@ -1,7 +1,7 @@
 package builddefinition
 
 import (
-	"github.com/pkg/errors"
+	"fmt"
 
 	"github.com/ispringtech/brewkit/internal/backend/api"
 	"github.com/ispringtech/brewkit/internal/common/maybe"
@@ -23,7 +23,7 @@ type builder struct{}
 
 func (builder builder) Build(c buildconfig.Config, secrets []config.Secret) (Definition, error) {
 	if c.APIVersion != version.APIVersionV1 {
-		return Definition{}, errors.Wrapf(ErrUnsupportedAPIVersion, "version: %s", c.APIVersion)
+		return Definition{}, fmt.Errorf("version: %s: %w", c.APIVersion, ErrUnsupportedAPIVersion)
 	}
 
 	vertexes, err := newVertexGraphBuilder(secrets, c.Targets).graphVertexes()
@@ -46,7 +46,7 @@ func (builder builder) variables(vars []buildconfig.VarData, secrets []config.Se
 	return slices.MapErr(vars, func(v buildconfig.VarData) (api.Var, error) {
 		mappedSecrets, err := mapSecrets(v.Secrets, secrets)
 		if err != nil {
-			return api.Var{}, errors.Wrapf(err, "failed to map secrets in %s variable", v.Name)
+			return api.Var{}, fmt.Errorf("failed to map secrets in %s variable: %w", v.Name, err)
 		}
 
 		return api.Var{

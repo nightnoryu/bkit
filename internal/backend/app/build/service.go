@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/pkg/errors"
-
 	"github.com/ispringtech/brewkit/internal/backend/api"
 	"github.com/ispringtech/brewkit/internal/backend/app/docker"
 	"github.com/ispringtech/brewkit/internal/backend/app/dockerfile"
@@ -70,7 +68,7 @@ func (service *buildService) calculateVars(ctx context.Context, vars []api.Var) 
 
 	d, err := dockerfile.NewVarGenerator(service.dockerfileImage).GenerateDockerfile(vars)
 	if err != nil {
-		return nil, errors.Wrap(err, "failed to generate dockerfile for variables")
+		return nil, fmt.Errorf("failed to generate dockerfile for variables: %w", err)
 	}
 
 	res := map[string]string{}
@@ -89,7 +87,7 @@ func (service *buildService) calculateVars(ctx context.Context, vars []api.Var) 
 			UseCache: false, // Disable cache for retrieving variable value
 		})
 		if err2 != nil {
-			return nil, errors.Wrapf(err2, "failed to calculate %s var", v.Name)
+			return nil, fmt.Errorf("failed to calculate %s var: %w", v.Name, err2)
 		}
 
 		res[v.Name] = string(data)
@@ -205,7 +203,7 @@ func (service *buildService) prePullImages(
 	})
 	existingImages, err := service.dockerClient.ListImages(ctx, imagesSlice)
 	if err != nil {
-		return errors.Wrap(err, "failed to filter existing images")
+		return fmt.Errorf("failed to filter existing images: %w", err)
 	}
 
 	imagesToPull := slices.Diff(imagesSlice, slices.Map(existingImages, func(img docker.Image) string {
