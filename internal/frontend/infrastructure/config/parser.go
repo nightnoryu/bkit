@@ -62,5 +62,9 @@ func (p Parser) Dump(srcConfig config.Config) ([]byte, error) {
 	}
 
 	data, err := json.Marshal(c)
-	return data, fmt.Errorf("failed to marshal config to json: %w", err)
+	if err != nil {
+		return nil, fmt.Errorf("failed to marshal config to json: %w", err)
+	}
+
+	return data, nil
 }

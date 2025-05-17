@@ -22,5 +22,9 @@ func (formatter Formatter) Format(configPath string) (string, error) {
 	options.StringStyle = jsonnetformatter.StringStyleLeave
 
 	data, err := jsonnetformatter.Format(filename, string(configData), options)
-	return data, fmt.Errorf("failed to format config file: %w", err)
+	if err != nil {
+		return "", fmt.Errorf("failed to format config file: %w", err)
+	}
+
+	return data, nil
 }

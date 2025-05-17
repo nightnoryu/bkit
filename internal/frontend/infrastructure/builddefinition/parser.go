@@ -49,7 +49,11 @@ func (parser Parser) compileConfig(configPath string) (string, error) {
 	}
 
 	data, err := vm.EvaluateAnonymousSnippet(path.Base(configPath), string(fileBytes))
-	return data, fmt.Errorf("failed to compile jsonnet for build definition: %w", err)
+	if err != nil {
+		return "", fmt.Errorf("failed to compile jsonnet for build definition: %w", err)
+	}
+
+	return data, nil
 }
 
 func mapConfig(c Config) buildconfig.Config {
