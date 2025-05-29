@@ -2,8 +2,9 @@ name: Go
 
 on:
   push:
-    branches: ['*']
-    tags: ['v*']
+    branches:
+      - master
+  pull_request:
 
 permissions:
   contents: read
