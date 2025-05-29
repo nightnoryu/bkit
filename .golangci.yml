@@ -1,3 +1,5 @@
+version: "2"
+
 run:
   deadline: 5m
   issues-exit-code: 1
@@ -5,12 +7,10 @@ run:
 linters:
   enable:
     - errcheck
-    - gosimple
     - govet
     - ineffassign
     - staticcheck
     - unused
-    - typecheck
     - unused
     - bodyclose
     - importas
@@ -20,22 +20,15 @@ linters:
     - gocognit
     - gocritic
     - gocyclo
-    - gofmt
-    - goimports
-    - revive
-    - gosec
     - misspell
     - nakedret
     - prealloc
-    - exportloopref
-    - stylecheck
     - unconvert
     - whitespace
     - rowserrcheck
     - goconst
     - asciicheck
     - nestif
-    - exportloopref
     - sqlclosecheck
 
 linters-settings:
