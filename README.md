@@ -1,9 +1,3 @@
-# bkit
+# :dolphin: bkit [![Build Status](https://github.com/nightnoryu/bkit/actions/workflows/go.yml/badge.svg)](https://github.com/nightnoryu/bkit/actions/workflows/go.yml) [![Go Report Card](https://goreportcard.com/badge/github.com/nightnoryu/bkit)](https://goreportcard.com/report/github.com/nightnoryu/bkit)
 
-(WIP) Fork of [brewkit](https://github.com/ispringtech/brewkit).
-
-## TODO
-
-- [ ] Bump Go version to 1.24
-- [ ] Create a custom GitHub action for running bkit
-- [ ] Rework documentation
+Container-native build system. Fork of [brewkit](https://github.com/ispringtech/brewkit).
