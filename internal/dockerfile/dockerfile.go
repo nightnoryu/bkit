@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ispringtech/brewkit/internal/common/maybe"
-	"github.com/ispringtech/brewkit/internal/common/slices"
+	"github.com/nightnoryu/bkit/internal/common/maybe"
+	"github.com/nightnoryu/bkit/internal/common/slices"
 )
 
 type Syntax string

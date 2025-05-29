@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/ispringtech/brewkit/internal/backend/app/ssh"
+	"github.com/nightnoryu/bkit/internal/backend/app/ssh"
 )
 
 const (

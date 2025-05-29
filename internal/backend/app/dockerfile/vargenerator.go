@@ -3,10 +3,10 @@ package dockerfile
 import (
 	"fmt"
 
-	"github.com/ispringtech/brewkit/internal/backend/api"
-	"github.com/ispringtech/brewkit/internal/common/maybe"
-	"github.com/ispringtech/brewkit/internal/common/slices"
-	"github.com/ispringtech/brewkit/internal/dockerfile"
+	"github.com/nightnoryu/bkit/internal/backend/api"
+	"github.com/nightnoryu/bkit/internal/common/maybe"
+	"github.com/nightnoryu/bkit/internal/common/slices"
+	"github.com/nightnoryu/bkit/internal/dockerfile"
 )
 
 type VarGenerator interface {

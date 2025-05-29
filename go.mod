@@ -1,6 +1,6 @@
-module github.com/ispringtech/brewkit
+module github.com/nightnoryu/bkit
 
-go 1.20
+go 1.24
 
 require (
 	github.com/google/go-jsonnet v0.20.0

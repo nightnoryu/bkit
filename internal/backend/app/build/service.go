@@ -5,15 +5,15 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ispringtech/brewkit/internal/backend/api"
-	"github.com/ispringtech/brewkit/internal/backend/app/docker"
-	"github.com/ispringtech/brewkit/internal/backend/app/dockerfile"
-	"github.com/ispringtech/brewkit/internal/backend/app/reporter"
-	"github.com/ispringtech/brewkit/internal/backend/app/ssh"
-	"github.com/ispringtech/brewkit/internal/common/maps"
-	"github.com/ispringtech/brewkit/internal/common/maybe"
-	"github.com/ispringtech/brewkit/internal/common/slices"
-	df "github.com/ispringtech/brewkit/internal/dockerfile"
+	"github.com/nightnoryu/bkit/internal/backend/api"
+	"github.com/nightnoryu/bkit/internal/backend/app/docker"
+	"github.com/nightnoryu/bkit/internal/backend/app/dockerfile"
+	"github.com/nightnoryu/bkit/internal/backend/app/reporter"
+	"github.com/nightnoryu/bkit/internal/backend/app/ssh"
+	"github.com/nightnoryu/bkit/internal/common/maps"
+	"github.com/nightnoryu/bkit/internal/common/maybe"
+	"github.com/nightnoryu/bkit/internal/common/slices"
+	df "github.com/nightnoryu/bkit/internal/dockerfile"
 )
 
 type Service interface {

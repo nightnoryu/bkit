@@ -1,7 +1,7 @@
 package slices
 
 import (
-	"github.com/ispringtech/brewkit/internal/common/maybe"
+	"github.com/nightnoryu/bkit/internal/common/maybe"
 )
 
 // Map iterates through slice and maps values

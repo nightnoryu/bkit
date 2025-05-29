@@ -3,8 +3,8 @@ package docker
 import (
 	"context"
 
-	"github.com/ispringtech/brewkit/internal/common/maybe"
-	"github.com/ispringtech/brewkit/internal/dockerfile"
+	"github.com/nightnoryu/bkit/internal/common/maybe"
+	"github.com/nightnoryu/bkit/internal/dockerfile"
 )
 
 type BuildParams struct {

@@ -20,7 +20,7 @@ local gosources = [
 
 {
     project():: {
-        apiVersion: "brewkit/v1",
+        apiVersion: "bkit/v1",
 
         vars: {
             gitcommit: {
@@ -62,10 +62,10 @@ local gosources = [
                     go build \\
                     -trimpath -v \\
                     -ldflags "-X main.Commit=${gitcommit} -X main.DockerfileImage=%s" \\
-                    -o ./bin/brewkit ./cmd/brewkit
+                    -o ./bin/bkit ./cmd/bkit
                 ', [images.dockerfile]),
                 output: {
-                    artifact: "/app/bin/brewkit",
+                    artifact: "/app/bin/bkit",
                     "local": "./bin"
                 }
             },

@@ -3,8 +3,8 @@ package builddefinition
 import (
 	stdslices "golang.org/x/exp/slices"
 
-	"github.com/ispringtech/brewkit/internal/backend/api"
-	"github.com/ispringtech/brewkit/internal/common/maybe"
+	"github.com/nightnoryu/bkit/internal/backend/api"
+	"github.com/nightnoryu/bkit/internal/common/maybe"
 )
 
 type Definition struct {

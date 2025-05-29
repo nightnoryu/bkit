@@ -5,13 +5,13 @@ import (
 
 	"github.com/urfave/cli/v2"
 
-	appversion "github.com/ispringtech/brewkit/internal/frontend/app/version"
+	appversion "github.com/nightnoryu/bkit/internal/frontend/app/version"
 )
 
 func version() *cli.Command {
 	return &cli.Command{
 		Name:   "version",
-		Usage:  "Show brewkit version info",
+		Usage:  "Show bkit version info",
 		Action: executeVersion,
 	}
 }

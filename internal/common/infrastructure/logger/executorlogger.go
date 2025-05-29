@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"github.com/ispringtech/brewkit/internal/common/infrastructure/executor"
+	"github.com/nightnoryu/bkit/internal/common/infrastructure/executor"
 )
 
 func NewExecutorLogger(logger Logger) executor.Logger {

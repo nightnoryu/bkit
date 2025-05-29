@@ -3,12 +3,12 @@ package builddefinition
 import (
 	"fmt"
 
-	"github.com/ispringtech/brewkit/internal/backend/api"
-	"github.com/ispringtech/brewkit/internal/common/maybe"
-	"github.com/ispringtech/brewkit/internal/common/slices"
-	"github.com/ispringtech/brewkit/internal/frontend/app/buildconfig"
-	"github.com/ispringtech/brewkit/internal/frontend/app/config"
-	"github.com/ispringtech/brewkit/internal/frontend/app/version"
+	"github.com/nightnoryu/bkit/internal/backend/api"
+	"github.com/nightnoryu/bkit/internal/common/maybe"
+	"github.com/nightnoryu/bkit/internal/common/slices"
+	"github.com/nightnoryu/bkit/internal/frontend/app/buildconfig"
+	"github.com/nightnoryu/bkit/internal/frontend/app/config"
+	"github.com/nightnoryu/bkit/internal/frontend/app/version"
 )
 
 type Builder interface {

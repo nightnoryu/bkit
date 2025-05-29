@@ -9,14 +9,14 @@ import (
 
 	"github.com/urfave/cli/v2"
 
-	appconfig "github.com/ispringtech/brewkit/internal/frontend/app/config"
-	infraconfig "github.com/ispringtech/brewkit/internal/frontend/infrastructure/config"
+	appconfig "github.com/nightnoryu/bkit/internal/frontend/app/config"
+	infraconfig "github.com/nightnoryu/bkit/internal/frontend/infrastructure/config"
 )
 
 func config() *cli.Command {
 	return &cli.Command{
 		Name:  "config",
-		Usage: "Manipulate brewkit config",
+		Usage: "Manipulate bkit config",
 		Subcommands: []*cli.Command{
 			configInit(),
 		},
@@ -26,7 +26,7 @@ func config() *cli.Command {
 func configInit() *cli.Command {
 	return &cli.Command{
 		Name:  "init",
-		Usage: "Create default brewkit config",
+		Usage: "Create default bkit config",
 		Action: func(ctx *cli.Context) error {
 			var opts commonOpt
 			opts.scan(ctx)

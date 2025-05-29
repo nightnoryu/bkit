@@ -1,7 +1,7 @@
 package buildconfig
 
 import (
-	"github.com/ispringtech/brewkit/internal/common/maybe"
+	"github.com/nightnoryu/bkit/internal/common/maybe"
 )
 
 type Config struct {

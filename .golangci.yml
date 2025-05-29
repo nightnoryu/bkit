@@ -42,7 +42,7 @@ linters-settings:
   govet:
     check-shadowing: true
   goimports:
-    local-prefixes: brewkit
+    local-prefixes: bkit
   gocritic:
     disabled-checks:
       - sloppyReassign
@@ -52,4 +52,4 @@ linters-settings:
       - opinionated
   wrapcheck:
     ignorePackageGlobs:
-      - brewkit/*
+      - bkit/*

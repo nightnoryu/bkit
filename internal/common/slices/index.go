@@ -1,7 +1,7 @@
 package slices
 
 import (
-	"github.com/ispringtech/brewkit/internal/common/maybe"
+	"github.com/nightnoryu/bkit/internal/common/maybe"
 )
 
 func Find[T any](s []T, f func(T) bool) maybe.Maybe[T] {

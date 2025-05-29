@@ -5,13 +5,13 @@ import (
 
 	stdslices "golang.org/x/exp/slices"
 
-	"github.com/ispringtech/brewkit/internal/backend/api"
-	"github.com/ispringtech/brewkit/internal/common/either"
-	"github.com/ispringtech/brewkit/internal/common/maps"
-	"github.com/ispringtech/brewkit/internal/common/maybe"
-	"github.com/ispringtech/brewkit/internal/common/slices"
-	"github.com/ispringtech/brewkit/internal/frontend/app/buildconfig"
-	"github.com/ispringtech/brewkit/internal/frontend/app/config"
+	"github.com/nightnoryu/bkit/internal/backend/api"
+	"github.com/nightnoryu/bkit/internal/common/either"
+	"github.com/nightnoryu/bkit/internal/common/maps"
+	"github.com/nightnoryu/bkit/internal/common/maybe"
+	"github.com/nightnoryu/bkit/internal/common/slices"
+	"github.com/nightnoryu/bkit/internal/frontend/app/buildconfig"
+	"github.com/nightnoryu/bkit/internal/frontend/app/config"
 )
 
 func newVertexGraphBuilder(secrets []config.Secret, targets []buildconfig.TargetData) *vertexGraphBuilder {

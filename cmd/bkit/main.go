@@ -9,12 +9,12 @@ import (
 
 	"github.com/urfave/cli/v2"
 
-	"github.com/ispringtech/brewkit/internal/dockerfile"
-	appconfig "github.com/ispringtech/brewkit/internal/frontend/app/config"
+	"github.com/nightnoryu/bkit/internal/dockerfile"
+	appconfig "github.com/nightnoryu/bkit/internal/frontend/app/config"
 )
 
 const (
-	appID = "brewkit"
+	appID = "bkit"
 )
 
 // These variables come from -ldflags settings
@@ -62,9 +62,9 @@ func runApp(ctx context.Context, args []string) error {
 		Flags: []cli.Flag{
 			&cli.StringFlag{
 				Name:    "config",
-				Usage:   "brewkit config",
+				Usage:   "bkit config",
 				Aliases: []string{"c"},
-				EnvVars: []string{"BREWKIT_CONFIG"},
+				EnvVars: []string{"BKIT_CONFIG"},
 				Value:   configPath,
 			},
 			&cli.BoolFlag{
@@ -76,7 +76,7 @@ func runApp(ctx context.Context, args []string) error {
 				Name:    "docker-config",
 				Usage:   "Path to docker client config",
 				Aliases: []string{"dc"},
-				EnvVars: []string{"BREWKIT_DOCKER_CONFIG"},
+				EnvVars: []string{"BKIT_DOCKER_CONFIG"},
 			},
 		},
 	}

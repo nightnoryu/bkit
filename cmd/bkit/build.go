@@ -5,13 +5,13 @@ import (
 
 	"github.com/urfave/cli/v2"
 
-	backendapp "github.com/ispringtech/brewkit/internal/backend/app/build"
-	"github.com/ispringtech/brewkit/internal/backend/infrastructure/docker"
-	"github.com/ispringtech/brewkit/internal/backend/infrastructure/ssh"
-	"github.com/ispringtech/brewkit/internal/frontend/app/buildconfig"
-	"github.com/ispringtech/brewkit/internal/frontend/app/builddefinition"
-	"github.com/ispringtech/brewkit/internal/frontend/app/service"
-	infrabuilddefinition "github.com/ispringtech/brewkit/internal/frontend/infrastructure/builddefinition"
+	backendapp "github.com/nightnoryu/bkit/internal/backend/app/build"
+	"github.com/nightnoryu/bkit/internal/backend/infrastructure/docker"
+	"github.com/nightnoryu/bkit/internal/backend/infrastructure/ssh"
+	"github.com/nightnoryu/bkit/internal/frontend/app/buildconfig"
+	"github.com/nightnoryu/bkit/internal/frontend/app/builddefinition"
+	"github.com/nightnoryu/bkit/internal/frontend/app/service"
+	infrabuilddefinition "github.com/nightnoryu/bkit/internal/frontend/infrastructure/builddefinition"
 )
 
 func build(workdir string) *cli.Command {
@@ -24,13 +24,13 @@ func build(workdir string) *cli.Command {
 				Usage:   "Config with build definition",
 				Aliases: []string{"d"},
 				Value:   path.Join(workdir, buildconfig.DefaultName),
-				EnvVars: []string{"BREWKIT_BUILD_CONFIG"},
+				EnvVars: []string{"BKIT_BUILD_CONFIG"},
 			},
 			&cli.BoolFlag{
 				Name:    "force-pull",
 				Usage:   "Always pull a newer version of images for targets",
 				Aliases: []string{"p"},
-				EnvVars: []string{"BREWKIT_FORCE_PULL"},
+				EnvVars: []string{"BKIT_FORCE_PULL"},
 			},
 		},
 		Action: executeBuild,

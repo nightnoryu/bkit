@@ -1,5 +1,5 @@
 package buildconfig
 
 const (
-	DefaultName = "brewkit.jsonnet"
+	DefaultName = "bkit.jsonnet"
 )

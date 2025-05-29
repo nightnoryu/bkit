@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	defaultConfigPath = "%s/.brewkit/config"
+	defaultConfigPath = "%s/.bkit/config"
 )
 
 var (

@@ -6,7 +6,7 @@ import (
 
 	stdslices "golang.org/x/exp/slices"
 
-	"github.com/ispringtech/brewkit/internal/common/slices"
+	"github.com/nightnoryu/bkit/internal/common/slices"
 )
 
 const (

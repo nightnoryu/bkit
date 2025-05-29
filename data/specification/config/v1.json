@@ -1,5 +1,5 @@
 {
-    "title": "BrewKit config",
+    "title": "bkit config",
     "type": "object",
     "properties": {
         "secrets": {

@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"github.com/ispringtech/brewkit/internal/backend/api"
+	"github.com/nightnoryu/bkit/internal/backend/api"
 )
 
 type ClearCacheParam struct {

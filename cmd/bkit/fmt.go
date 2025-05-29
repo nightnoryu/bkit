@@ -5,7 +5,7 @@ import (
 
 	"github.com/urfave/cli/v2"
 
-	"github.com/ispringtech/brewkit/internal/frontend/infrastructure/jsonnet"
+	"github.com/nightnoryu/bkit/internal/frontend/infrastructure/jsonnet"
 )
 
 func fmtCommand() *cli.Command {

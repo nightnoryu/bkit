@@ -8,7 +8,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/ispringtech/brewkit/internal/common/maybe"
+	"github.com/nightnoryu/bkit/internal/common/maybe"
 )
 
 type RunParams struct {

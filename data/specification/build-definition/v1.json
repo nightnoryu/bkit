@@ -1,12 +1,12 @@
 {
-    "title": "BrewKit build definition",
+    "title": "bkit build definition",
     "type": "object",
     "properties": {
         "apiVersion": {
             "description": "Api version of build definition",
             "type": "string",
             "enum": [
-                "brewkit/v1"
+                "bkit/v1"
             ]
         },
         "vars": {

@@ -6,10 +6,10 @@ import (
 
 	"github.com/urfave/cli/v2"
 
-	"github.com/ispringtech/brewkit/internal/common/infrastructure/logger"
-	"github.com/ispringtech/brewkit/internal/common/maybe"
-	appconfig "github.com/ispringtech/brewkit/internal/frontend/app/config"
-	infraconfig "github.com/ispringtech/brewkit/internal/frontend/infrastructure/config"
+	"github.com/nightnoryu/bkit/internal/common/infrastructure/logger"
+	"github.com/nightnoryu/bkit/internal/common/maybe"
+	appconfig "github.com/nightnoryu/bkit/internal/frontend/app/config"
+	infraconfig "github.com/nightnoryu/bkit/internal/frontend/infrastructure/config"
 )
 
 type commonOpt struct {

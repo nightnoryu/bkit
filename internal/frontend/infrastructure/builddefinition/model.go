@@ -1,8 +1,8 @@
 package builddefinition
 
 import (
-	"github.com/ispringtech/brewkit/internal/common/either"
-	"github.com/ispringtech/brewkit/internal/common/maybe"
+	"github.com/nightnoryu/bkit/internal/common/either"
+	"github.com/nightnoryu/bkit/internal/common/maybe"
 )
 
 type Config struct {

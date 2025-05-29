@@ -3,15 +3,15 @@ package main
 import (
 	"github.com/urfave/cli/v2"
 
-	backendcache "github.com/ispringtech/brewkit/internal/backend/app/cache"
-	"github.com/ispringtech/brewkit/internal/backend/infrastructure/docker"
-	"github.com/ispringtech/brewkit/internal/frontend/app/service"
+	backendcache "github.com/nightnoryu/bkit/internal/backend/app/cache"
+	"github.com/nightnoryu/bkit/internal/backend/infrastructure/docker"
+	"github.com/nightnoryu/bkit/internal/frontend/app/service"
 )
 
 func cache() *cli.Command {
 	return &cli.Command{
 		Name:  "cache",
-		Usage: "Manipulate brewkit docker cache",
+		Usage: "Manipulate bkit docker cache",
 		Subcommands: []*cli.Command{
 			cacheClear(),
 		},

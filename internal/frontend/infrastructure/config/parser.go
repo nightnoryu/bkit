@@ -9,8 +9,8 @@ import (
 
 	"github.com/google/go-jsonnet"
 
-	"github.com/ispringtech/brewkit/internal/common/slices"
-	"github.com/ispringtech/brewkit/internal/frontend/app/config"
+	"github.com/nightnoryu/bkit/internal/common/slices"
+	"github.com/nightnoryu/bkit/internal/frontend/app/config"
 )
 
 type Parser struct{}
