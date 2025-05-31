@@ -1,4 +1,4 @@
-# :dolphin: bkit ![GitHub Release](https://img.shields.io/github/v/release/nightnoryu/bkit) [![Build Status](https://github.com/nightnoryu/bkit/actions/workflows/check-go.yml/badge.svg)](https://github.com/nightnoryu/bkit/actions/workflows/check-go.yml) [![Go Report Card](https://goreportcard.com/badge/github.com/nightnoryu/bkit)](https://goreportcard.com/report/github.com/nightnoryu/bkit)
+# :dolphin: bkit [![Github release](https://img.shields.io/github/release/nightnoryu/bkit.svg)](https://github.com/nightnoryu/bkit/releases) [![Build Status](https://github.com/nightnoryu/bkit/actions/workflows/check-go.yml/badge.svg)](https://github.com/nightnoryu/bkit/actions/workflows/check-go.yml) [![Go Report Card](https://goreportcard.com/badge/github.com/nightnoryu/bkit)](https://goreportcard.com/report/github.com/nightnoryu/bkit)
 
 Container-native build system. Fork of [brewkit](https://github.com/ispringtech/brewkit).
 
