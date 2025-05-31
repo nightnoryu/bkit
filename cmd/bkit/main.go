@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	stdlog "log"
+	"log"
 	"os"
 	"os/signal"
 	"syscall"
@@ -20,18 +20,15 @@ const (
 // These variables come from -ldflags settings
 // Here also setup their fallback values
 var (
+	Version         = "UNKNOWN"
 	Commit          = "UNKNOWN"
 	DockerfileImage = string(dockerfile.Dockerfile14) // default image for dockerfile
 )
 
 func main() {
-	ctx := context.Background()
-
-	ctx = subscribeForKillSignals(ctx)
-
-	err := runApp(ctx, os.Args)
-	if err != nil {
-		stdlog.Fatal(err)
+	ctx := subscribeForKillSignals(context.Background())
+	if err := runApp(ctx, os.Args); err != nil {
+		log.Fatal(err)
 	}
 }
 
@@ -41,7 +38,7 @@ func runApp(ctx context.Context, args []string) error {
 
 	configPath, err := appconfig.DefaultConfigPath()
 	if err != nil {
-		configPath = "" // Ignore err if default path unavailable
+		configPath = ""
 	}
 
 	workdir, err := os.Getwd()
