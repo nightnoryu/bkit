@@ -12,6 +12,8 @@ Via `go install`:
 go install github.com/nightnoryu/bkit/cmd/bkit@latest
 ```
 
+Or just download a pre-build binary from the [releases page](https://github.com/nightnoryu/bkit/releases).
+
 ## Getting started
 
 ### Sample project
