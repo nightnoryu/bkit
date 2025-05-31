@@ -24,13 +24,17 @@ func executeVersion(ctx *cli.Context) error {
 
 	v := struct {
 		Version    string `json:"version"`
-		APIVersion string `json:"apiVersion"`
 		Commit     string `json:"commit"`
+		Date       string `json:"date"`
+		BuiltBy    string `json:"built_by"`
+		APIVersion string `json:"apiVersion"`
 		Dockerfile string `json:"dockerfile"`
 	}{
 		Version:    Version,
-		APIVersion: appversion.APIVersionV1,
 		Commit:     Commit,
+		Date:       Date,
+		BuiltBy:    BuiltBy,
+		APIVersion: appversion.APIVersionV1,
 		Dockerfile: DockerfileImage,
 	}
 

@@ -17,11 +17,12 @@ const (
 	appID = "bkit"
 )
 
-// These variables come from -ldflags settings
-// Here also setup their fallback values
+// Metadata from -ldflags
 var (
 	Version         = "UNKNOWN"
 	Commit          = "UNKNOWN"
+	Date            = "UNKNOWN"
+	BuiltBy         = "UNKNOWN"
 	DockerfileImage = string(dockerfile.Dockerfile14) // default image for dockerfile
 )
 
